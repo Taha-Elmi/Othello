@@ -9,6 +9,7 @@
 // global variables
 char board[SIZE][SIZE];
 int white, black, free_cell = 64, placeable_cell = 4;
+int menu_choice = 1;
 
 // functions
 void gameloop();
@@ -477,13 +478,11 @@ void gameover()
 
     printf("\nWell well well, we wish you had fun with the game :)\n\nDo you wanna play again? (yes: 1, no: 0)");
 
-    int answer = 3; //to enter the loop
-    while (answer != 1 && answer != 0) {
+    do {
         fflush(stdin);
-        scanf("%d", &answer);
-        switch (answer) {
+        scanf("%d", &menu_choice);
+        switch (menu_choice) {
             case 1:
-                gameloop();
                 break;
             case 0:
                 system("cls");
@@ -494,12 +493,13 @@ void gameover()
                 printf("Wrong answer. Just type 0 or 1: ");
     }
 
-    }
+    } while (menu_choice != 1 && menu_choice != 0);
 }
 
 int main()
 {
     help();
-    gameloop();
+    while (menu_choice == 1)
+        gameloop();
     return 0;
 }
